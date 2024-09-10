@@ -28,33 +28,57 @@ public class SharedCounter {
         }
         this.count = count;
         //TODO#1-1 semaphore를 생성 합니다.( 동시에 하나의 Thread만 접근할 수 있습니다. ), permits prameter를 확인하세요.
-        semaphore = null;
+        this.semaphore = new Semaphore(1);
     }
 
-    public long getCount(){
+    public long getCount() throws InterruptedException {
         /*TODO#1-2 count 를 반환 합니다.
             semaphore.acquire()를 호출하여 허가를 획득 합니다.
             쓰레드가 작업이 완료되면
             semaphore.release()를 호출하여
             허가를 반환 합니다.
          */
-
+        try {
+            semaphore.acquire();
+            return count;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        finally {
+            semaphore.release();
+        }
         return count;
     }
 
-    public long increaseAndGet(){
+    public long increaseAndGet() throws InterruptedException {
         /* TODO#1-3 count = count + 1 증가시키고 count를 반환 합니다.
            1-2 처럼 semaphore를 이용해서 동기화할 수 있도록 구현 합니다.
         */
-        count = count + 1;
+        try {
+            this.semaphore.acquire();
+            count = count + 1;
+            return count;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } finally {
+            this.semaphore.release();
+        }
         return count;
     }
 
-    public long decreaseAndGet(){
+    public long decreaseAndGet() throws InterruptedException {
         /*TODO#1-4 count = count-1 감소시키고 count를 반환 합니다.
           1-2 처럼 semaphore를 이용해서 동기화할 수 있도록 구현 합니다.
         */
-        count = count - 1;
+        try {
+            this.semaphore.acquire();
+            count = count - 1;
+            return count;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } finally {
+            this.semaphore.release();
+        }
         return count;
     }
 }
