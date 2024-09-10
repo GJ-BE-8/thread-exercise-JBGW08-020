@@ -19,7 +19,7 @@ public class App
     public static void main( String[] args )
     {
         //TODO#1 CounterHandler 객체를 생성 합니다. countMaxSize : 10
-        CounterHandler counterHandler = new CounterHandler(10);
+        CounterHandler counterHandler = new CounterHandler(10L);
 
         //TODO#2 threadA 생성시 counterHandler 객체를 paramter로 전달 합니다.
         Thread threadA = new Thread(counterHandler);
@@ -34,9 +34,9 @@ public class App
         threadB.setName("my-counter-B");
 
         //TODO#7 threadA를 시작 합니다.
-        threadA.run();
+        threadA.start();
 
         //TODO#8 threadB를 시작 합니다.
-        threadB.run();
+        threadB.start();
     }
 }
