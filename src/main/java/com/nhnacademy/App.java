@@ -28,7 +28,7 @@ public class App
         thread.setName("my-counter");
 
         //TODO#7 thread를 시작 합니다.
-        thread.run();
+        thread.start();
 
     }
 }
