@@ -38,5 +38,7 @@ public class App
 
         //TODO#8 threadB를 시작 합니다.
         threadB.start();
+
+        // 멀티쓰레드는 동기화가 반드시 필요함.
     }
 }
