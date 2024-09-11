@@ -15,15 +15,12 @@ package com.nhnacademy;
 import com.nhnacademy.thread.CounterHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.management.monitor.CounterMonitor;
-import javax.management.monitor.Monitor;
-
 @Slf4j
 public class App
 {
 
     //TODO#1 monitor로 사용한 객체를 생성 합니다.
-    public static final Object monitor = new CounterMonitor();
+    public static final Object monitor = new Object();
 
     public static void main( String[] args ) throws InterruptedException {
         //TODO#2 counterHandlerA 객체를 생성 합니다. countMaxSize : 10, monitor
